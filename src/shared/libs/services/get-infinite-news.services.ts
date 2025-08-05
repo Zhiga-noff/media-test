@@ -1,16 +1,20 @@
 import { api } from './api.services';
+import { GET_POSTS } from "../constant/api.constant";
+import { DataNews } from "../types/news.types";
 
-export const getInfiniteNewsServices = async (url: string, limit = 1, skip = 0) => {
-  try {
-    const { data } = await api.get(url, {
-      params: {
-        limit,
-        skip,
-      },
-    });
+export const getInfiniteNewsServices = async ({ pageParam = 0 }) => {
+  const limit = 10;
 
-    return { data, error: null };
-  } catch (error) {
-    return { data: null, error };
-  }
+  // Указываем тип <DataNews> — это ответ от API
+  const response = await api.get<DataNews>(GET_POSTS, {
+    params: { limit, skip: pageParam },
+  });
+
+  return {
+    posts: response.data.posts,
+    nextCursor: response.data.skip + response.data.limit < response.data.total
+      ? response.data.skip + response.data.limit
+      : undefined,
+  };
 };
+

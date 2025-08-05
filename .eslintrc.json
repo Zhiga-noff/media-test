@@ -28,15 +28,15 @@
   ],
   "rules": {
     "react/jsx-indent": [
-      0,
+      1,
       2
     ],
     "react/jsx-indent-props": [
-      0,
+      1,
       2
     ],
     "indent": [
-      0,
+      1,
       2
     ],
     "react/jsx-filename-extension": [

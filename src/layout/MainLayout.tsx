@@ -15,7 +15,7 @@ export const MainLayout: FC<Props> = ({ children }) => {
       </Header>
       <Content className={styles.layout}>
         <Breadcrumb className={styles.breadcrumb}
-                    items={[{ title: 'Главная' }, { title: 'Не основная' }]}
+          items={[{ title: 'Главная' }, { title: 'Не основная' }]}
         />
         {children}
       </Content>
