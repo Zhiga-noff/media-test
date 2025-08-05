@@ -5,6 +5,9 @@ import { getInfiniteNewsServices } from "../../../shared/libs/services/get-infin
 import { NewsCard } from "../../../shared/ui/news-card/NewsCard";
 import styles from "./HomePage.module.scss";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setNewsInfo } from "../../store/slices/news.slices";
+import { Posts } from "../../../shared/libs/types/news.types";
 
 
 function HomePage() {
@@ -21,6 +24,12 @@ function HomePage() {
     initialPageParam: 0,
   });
 
+
+  const dispatch = useDispatch();
+
+  const clickToCardNews = (payload: Posts) => {
+    dispatch(setNewsInfo(payload))
+  }
   return (
     <div className="posts-list">
       <InfiniteScroll
@@ -33,7 +42,9 @@ function HomePage() {
       >
         {data?.pages.map((page) =>
           page.posts.map((post: any) => (
-            <Link to={'/' + post.id} key={post.id}>
+            <Link to={'/' + post.id} key={post.id} onClick={() => {
+              clickToCardNews(post)
+            }}>
               <NewsCard {...post} key={post.id}/>
             </Link>
 

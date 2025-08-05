@@ -7,10 +7,12 @@ import styles from "./NewsCard.module.scss";
 
 export const NewsCard = (props: Posts) => {
   const { title, body, tags, views, userId, reactions } = props
+
   return (
     <Card
       variant={"outlined"}
       hoverable
+
     >
       <Title level={4}>
         {title}
