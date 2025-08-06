@@ -28,6 +28,10 @@ export const useContextNewsData = (): Posts => {
       return () => {
       }
     }
+    if (pathname === '/not-found') {
+      return () => {
+      }
+    }
     if (contextNews.title === '') {
       getInfoPost(pathname)
     }

@@ -17,9 +17,16 @@ export const MainBreadcrumbs = () => {
 
 
   useEffect(() => {
+    if (pathname === '/not-found') {
+      setPagesNameArr(pre => [...originalPageName, { title: 'Страница не найдена' }]);
+      return () => {
+      }
+    }
+
     if (pathname === '/') {
       setPagesNameArr(originalPageName)
-      return
+      return () => {
+      }
     }
 
     if (title !== '') {
@@ -29,11 +36,11 @@ export const MainBreadcrumbs = () => {
         }
       });
     }
-  }, [pathname])
+  }, [pathname, title])
 
   return (
     <Breadcrumb className={styles.breadcrumb}
-      items={pagesNameArr}
+                items={pagesNameArr}
     />
   );
 };
