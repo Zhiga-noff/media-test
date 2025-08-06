@@ -12,7 +12,8 @@ export const MainBreadcrumbs = () => {
   const { title } = useContextNewsData()
   const { pathname } = useLocation();
 
-  const [pagesNameArr, setPagesNameArr] = useState<Partial<BreadcrumbItemType & BreadcrumbSeparatorType>[] | undefined>(originalPageName)
+  const [pagesNameArr, setPagesNameArr]
+    = useState<Partial<BreadcrumbItemType & BreadcrumbSeparatorType>[] | undefined>(originalPageName)
 
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export const MainBreadcrumbs = () => {
 
   return (
     <Breadcrumb className={styles.breadcrumb}
-                items={pagesNameArr}
+      items={pagesNameArr}
     />
   );
 };

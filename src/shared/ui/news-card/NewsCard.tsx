@@ -6,7 +6,7 @@ import { Posts } from "../../libs/types/news.types";
 import styles from "./NewsCard.module.scss";
 
 export const NewsCard = (props: Posts) => {
-  const { title, body, tags, views, userId, reactions } = props
+  const { title, body, tags, reactions } = props
 
   return (
     <Card
