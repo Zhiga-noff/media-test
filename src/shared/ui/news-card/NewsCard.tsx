@@ -12,7 +12,7 @@ export const NewsCard = (props: Posts) => {
     <Card
       variant={"outlined"}
       hoverable
-
+      className={styles.card}
     >
       <Title level={4}>
         {title}

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setNewsInfo } from "../../store/slices/news.slices";
 import { Posts } from "../../../shared/libs/types/news.types";
+import { MockCardNews } from "../../../shared/ui/mock/MockCardNews";
 
 
 function HomePage() {
@@ -39,7 +40,7 @@ function HomePage() {
         useWindow={true}
         element={'div'}
         className={styles.container}
-      >
+      >{!data?.pages && ''}
         {data?.pages.map((page) =>
           page.posts.map((post: any) => (
             <Link to={'/' + post.id} key={post.id} onClick={() => {
@@ -51,6 +52,10 @@ function HomePage() {
           ))
         )}
       </InfiniteScroll>
+      {status === 'pending' &&
+        <div className={styles.container}><MockCardNews/><MockCardNews/><MockCardNews/><MockCardNews/><MockCardNews/>
+          <MockCardNews/><MockCardNews/><MockCardNews/><MockCardNews/><MockCardNews/>
+        </div>}
     </div>
   );
 }

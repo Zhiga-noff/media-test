@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import './assets/styles/index.scss';
 import { routesConstant } from './app/libs/constants';
 import { RouterProvider } from 'react-router-dom';
-import { MainLayout } from "./layout/MainLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
@@ -14,9 +13,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <MainLayout>
-          <RouterProvider router={routesConstant}/>
-        </MainLayout>
+        <RouterProvider router={routesConstant}/>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>,

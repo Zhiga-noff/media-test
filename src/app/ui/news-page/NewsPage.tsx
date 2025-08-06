@@ -1,37 +1,30 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { getNewslice, setNewsInfo } from "../../store/slices/news.slices";
-import { useNavigate, useParams } from "react-router-dom";
-import { api } from "../../../shared/libs/services/api.services";
-import { GET_POSTS } from "../../../shared/libs/constant/api.constant";
-import { Posts } from "../../../shared/libs/types/news.types";
+import React from 'react';
+import { useContextNewsData } from "../../../shared/libs/hooks/use-context-news-data";
+import Title from "antd/es/typography/Title";
+import Paragraph from "antd/es/typography/Paragraph";
+import styles from "./NewsPage.module.scss";
+import { Space, Tag } from "antd";
 
 const NewsPage = () => {
-  const { newsId } = useParams();
-  const navigate = useNavigate();
-  const { title, body, reactions, tags } = useSelector(getNewslice);
-  const dispatch = useDispatch()
-
-
-  useEffect(() => {
-    if (title === '') {
-      const getInfoPost = async (newsId: string | undefined) => {
-        try {
-          const response = await api.get<Posts>(GET_POSTS + '/' + newsId)
-          dispatch(setNewsInfo(response.data))
-        } catch (err) {
-          navigate('/not-found')
-        }
-      }
-      getInfoPost(newsId)
-    }
-
-  }, []);
+  const { title, body, tags, reactions } = useContextNewsData()
 
   return (
-    <div>
-
-    </div>
+    <>
+      <Title level={1}>{title}</Title>
+      <Tag color="pink" className={styles.likes}>
+        <Title level={5} className={styles.titleLike}>Лайки</Title>
+        {reactions.likes}
+      </Tag>
+      <Paragraph className={styles.text}
+      >{body}</Paragraph>
+      <Space wrap>
+        {tags.map((tag: string) => (
+          <Tag key={tag} color="green">
+            #{tag}
+          </Tag>
+        ))}
+      </Space>
+    </>
   );
 };
 

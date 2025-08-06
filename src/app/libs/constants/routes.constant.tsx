@@ -4,16 +4,17 @@ import React from 'react';
 import HomePage from "../../ui/home-page/HomePage";
 import NewsPage from "../../ui/news-page/NewsPage";
 import NotFound from "../../ui/not-found/NotFound";
+import { MainLayout } from "../../../layout/MainLayout";
 
 export const routesConstant = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage/>,
+    element: <MainLayout><HomePage/></MainLayout>,
   },
   {
     path: '/:newsId',
-    element: <NewsPage/>,
+    element: <MainLayout><NewsPage/></MainLayout>,
   },
-  { path: 'not-found', element: <NotFound/> },
-  { path: '*', element: <NotFound/> }
+  { path: 'not-found', element: <MainLayout><NotFound/></MainLayout> },
+  { path: '*', element: <MainLayout><NotFound/></MainLayout> }
 ]);
